@@ -1,7 +1,6 @@
 N = int(input())
 
 sm = 0
-
 for i in range(N):
     A, B = list(map(int, input().split()))
     sm += B * (B + 1) / 2 - A * (A - 1) / 2
