@@ -10,3 +10,16 @@ def triple_roop(n):
         for j in range(i + 1, n):
             for k in range(j + 1, n + 1):
                 print(i, j, k)
+
+# 約数列挙
+def divisor(n):
+    i = 1
+    divisor_list = []
+    while i * i <= n:
+        if n % i == 0:
+            divisor_list.append(i)
+            if n // i != i:
+                divisor_list.append(n // i)
+        i += 1
+    divisor_list.sort()
+    return divisor_list
