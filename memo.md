@@ -15,3 +15,12 @@ output -> [a, b, c], [b, c, a], [c, b, a]
 ```
 alpabet = [chr(ord('a') + i) for i in range(26)]
 ```
+
+## 多重リストのソート
+```
+ans = sorted(ans, reverse=False, key=lambda x: x[1])
+
+#昇順
+input = [[2, 3], [1, 2], [3, 1]]
+output = [[3, 1], [1, 2], [2, 3]]
+```
