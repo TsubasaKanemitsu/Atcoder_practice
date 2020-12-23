@@ -23,3 +23,13 @@ def divisor(n):
         i += 1
     divisor_list.sort()
     return divisor_list
+
+# 最大公約数
+# mathライブラリのmath.gcd(x, y)も使える
+def gcd(a, b):
+    if a < b:
+        a, b = b, a
+    while a % b > 0:
+        a, b = b, a % b
+
+    return b
