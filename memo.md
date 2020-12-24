@@ -24,3 +24,13 @@ ans = sorted(ans, reverse=False, key=lambda x: x[1])
 input = [[2, 3], [1, 2], [3, 1]]
 output = [[3, 1], [1, 2], [2, 3]]
 ```
+
+## 順列
+```
+imort itertools
+seq = [1, 2, 3]
+perm = list(itertools.permutations(seq))
+
+例
+perm = [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+```
