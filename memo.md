@@ -34,3 +34,18 @@ perm = list(itertools.permutations(seq))
 例
 perm = [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 ```
+
+## 累積和
+累積和の前処理を事前に行うことで(O(N))，
+区間の総和をO(1)で求めることができる．
+```
+num = list(map(int, input().split()))
+
+cum_sum = [num[0]]
+
+for i in range(1, len(num)):
+    print(i)
+    cum_sum.append(cum_sum[i - 1] + num[i])
+
+print(cum_sum)
+```
