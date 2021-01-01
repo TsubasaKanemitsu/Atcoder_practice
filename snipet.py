@@ -49,3 +49,13 @@ def gcd(a, b):
 def lcm(x, y):
     import math
     return (x * y) // math.gcd(x, y)
+
+# 組み合わせ総数
+def combinations_count(n, r):
+    import math
+    return math.factorial(n) // ((math.factorial(n - r)) * math.factorial(r))
+
+# 順列総数
+def permutaions_count(n, r):
+    import math
+    return math.factorial(n) // math.factorial(n - r)
