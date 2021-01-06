@@ -59,3 +59,4 @@ def combinations_count(n, r):
 def permutaions_count(n, r):
     import math
     return math.factorial(n) // math.factorial(n - r)
+
