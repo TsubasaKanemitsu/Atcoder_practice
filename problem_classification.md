@@ -18,6 +18,39 @@ mid_prev_num = D[k // 2 - 1]
 num = [i for i in range(mid_prev_num + 1, mid_num + 1)]
 print(len(num))
 ```
+- 127C
+    - 解けた(19分)
+    - パターン:数え上げ
+- 考察
+ゲートを全て通ることのできる整数の数を求めることを考えればいい．
+全てのゲートを介していくうちに下限と上限が徐々に狭まっていくので，狭まっていく下限と上限を更新しつづけ,最終的な下限の状態と上限の状態を管理し，
+最後にその範囲の整数の数をカウントすればいい．
+```
+n, m = list(map(int, input().split()))
+
+L, R = [], []
+
+for i in range(m):
+    l, r = list(map(int, input().split()))
+    L.append(l)
+    R.append(r)
+
+low = L[0]
+high = R[0]
+
+for i in range(1, m):
+    if low < L[i]:
+        low = L[i]
+    else:
+        pass
+    if high > R[i]:
+        high = R[i]
+    else:
+        pass
+   
+num = [i for i in range(low, high + 1)]
+print(len(num))
+```
 ## 制御フロー観点
 - 136C
     - 解けた(10分)
