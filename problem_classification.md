@@ -178,10 +178,57 @@ print("Yes")
 - 感想
 文字列の足し算などで凡ミスをしてしまい解答に時間がかかってしまった
 解き方の方針自体はすぐに出た．
+```
+import itertools
+num = list(map(int, input()))
+
+for perm in itertools.product(['+', '-'], repeat=3):
+    flag = False
+    ans = num[0]
+    str_ans = str(num[0])
+    for index, p in enumerate(perm):
+        if p == '+':
+            ans += num[index + 1]
+            str_ans += p + str(num[index + 1])
+        else:
+            ans -= num[index + 1]
+            str_ans += p + str(num[index + 1])
+    if ans == 7:
+        print(f'{str_ans}={ans}')
+        flag = True
+        break
+    if flag:
+        break
+```
 ## データ構造観点
 
 ## アルゴリズム観点
+### 144C
+- 解答時間
+    - 解けた(10分)
+- パターン
+    - 約数列挙の応用
+- 考察
+(1, 1)から(a, b)に至るまでの移動回数はa + b -2となる．
+a, bを求めるとき，全探索をしていては計算時間内に処理を終わらせることができないので計算量を減らす方法を考える必要がある．
+そこで，a, bはNを割ったときの数と商の組み合わせで求め，更にa≤bの対称性を用いることで計算量をO(N)からO(√N)に減らすように実装する．
+```
+n = int(input())
 
+def get_max_div_mod(n):
+    itr = 1
+    result = [1, 1]
+    while itr * itr <= n:
+        if n % itr == 0:
+            result = [itr, n // itr]
+        itr += 1
+       
+    return result
+
+result = get_max_div_mod(n)
+
+print(sum(result) - 2)  
+```
 ## 計算量観点
 ### 134C
 - 解答時間
