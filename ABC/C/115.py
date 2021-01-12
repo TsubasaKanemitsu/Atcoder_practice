@@ -1,5 +1,3 @@
-import itertools
-
 n, k = list(map(int, input().split()))
 
 h = [int(input()) for _ in range(n)]
