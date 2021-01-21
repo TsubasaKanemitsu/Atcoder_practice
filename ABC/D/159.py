@@ -12,7 +12,6 @@ A = list(map(int, input().split()))
 A_count = defaultdict(int)
 for a in A:
     A_count[a] += 1
-# print(A_count)
 
 select_own = defaultdict(int)
 select_other = defaultdict(int)
@@ -31,11 +30,9 @@ for key, value in dict(A_count).items():
     sum_other += select_other[key]
     
 
-# print(select_own, select_other)
 ans = 0
 for a in A:
     ans = 0
     
     ans = sum_other - select_other[a] + select_own[a]
-    # print(sum_other, select_other[a], select_own[a])
     print(ans)
