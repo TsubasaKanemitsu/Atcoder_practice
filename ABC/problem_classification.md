@@ -192,8 +192,39 @@ print(ans)
 - 解答時間
     - 20分
 - パターン
-     - 数え上げ
+     - 差分更新(数え上げ関係?)
+     - 159Dと同じ問題の部類らしい
+- 考察
+問題通りにAの中からBに該当する数値をCに置換するという操作し，その時の総和を求めるとなるとO(N^2)になるのでこの方法では無理なことがわかる．
+1. 事前にAの中で出た数値の回数をカウントした辞書を用意する
+2. Aの総和を計算しておく
+3. B, Cが入力されるたびに1で作成した辞書のカウント回数を更新し，更新に応じて生じた総和の差を2で求めた総和を用いて算出し，操作毎に総和をdpに保持する
+4. dpに操作毎の総和が保持されているので，それを表示する.
+よってこれらの処理はO(N + Q)で完了する．
+```
+from collections import Counter
+from collections import defaultdict
+n = int(input())
+a = list(map(int, input().split()))
+q = int(input())
 
+sum_a = sum(a)
+dict_a = defaultdict(int)
+for i in a:
+    dict_a[i] += 1
+dp = []
+
+for i in range(q):
+    b, c = list(map(int, input().split()))
+    num_b = dict_a[b]
+    dict_a[c] += num_b
+    dict_a[b] = 0
+    sum_a += num_b * (c - b)
+    dp.append(sum_a)
+
+for i in range(q):
+    print(dp[i])
+```
 ## 制御フロー観点
 ## 65C
 - 解答時間
