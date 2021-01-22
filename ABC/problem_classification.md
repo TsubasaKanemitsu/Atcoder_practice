@@ -34,6 +34,31 @@ for i in range(red_count):
 print(ans)
 ```
 ## 演算観点
+### 81C
+- 解答時間
+    - 15分
+- パターン
+    - ソート，条件を満たす最小値を求める
+- 考察
+少なくとも何個のボールの整数を書き換える必要があるかと聞かれているのが，これは最小で何個の整数を置き換えると整数の種類がK種類になるのかと聞かれていることになるので以下の手順で考える．
+1. 整数の種類とボールを書き替える個数が問題に関係するので，整数とその整数の個数が対応した辞書を作成し，種類の数と個数を求める．
+2. 元の種類の数からK種類にするために置き換える必要がある整数を個数が少ない順に選んでいくことで置き換える必要がある整数の個数の最小値を求めることができる．
+```from collections import Counter
+n, k = list(map(int, input().split()))
+A = list(map(int, input().split()))
+
+A = Counter(A)
+A = sorted(A.items(), key=lambda x: x[1], reverse=True)
+
+num_kind = len(A)
+ans = 0
+i = 0
+while k < num_kind:
+    ans += A[i][1]
+    num_kind -= 1
+    i += 1
+print(ans)
+```
 ### 121C
 - 解答時間
     - 解けなかった(復習はいらない，問題を解く方針は合っていた)
