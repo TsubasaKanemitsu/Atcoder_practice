@@ -197,6 +197,30 @@ for i in range(n):
             count += 1
 print(count)
 ```
+### 135 B
+- 解答時間
+    - 7分
+- パターン
+    - ソート
+- 考察
+与えられた数列が1回の入れ替え操作で昇順にできるかを判定する必要がある．
+ということは，理想の昇順な数列と差異のある要素数は0か2であると考えることができる．よって，pと理想の昇順配列の要素が異なる数分カウントすることで解答を得ることができる．
+```
+n = int(input())
+p = list(map(int, input().split()))
+
+ans = sorted(p)
+
+count = 0
+for i in range(n):
+    if p[i] != ans[i]:
+        count += 1
+
+if count == 0 or count == 2:
+    print("YES")
+else:
+    print("NO")
+```
 ### 135C
 - 解答時間
     - 解けた(19分)
