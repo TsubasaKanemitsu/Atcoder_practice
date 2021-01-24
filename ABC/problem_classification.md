@@ -171,6 +171,32 @@ mid_prev_num = D[k // 2 - 1]
 num = [i for i in range(mid_prev_num + 1, mid_num + 1)]
 print(len(num))
 ```
+### 133B
+- 解答時間
+    - 15分
+- パターン
+    - 全探索
+- 考察
+与えられたXを用いて距離を求める全パターンを網羅するには，自分と自分以外の行全てのX同士を計算させる必要があるのでi ~ n, j = i + 1 ~ nの2重ループでその組み合わせは網羅することができる．更に列単位で距離計算を行っていくので, k ~ dのループが必要になる．これらの3重ループの全探索で距離を求め，距離の整数判定処理を追加することで問題を解くことができる．
+- 備考
+pythonでは整数判定のために，is_interger()という関数が使用できる．
+```
+# 15分
+n, d = list(map(int, input().split()))
+
+x = [list(map(int, input().split())) for _ in range(n)]
+
+count = 0
+for i in range(n):
+    for j in range(i + 1, n):
+        dis = 0
+        for k in range(d):
+            dis += abs(x[i][k] - x[j][k]) ** 2
+        dis = dis ** 0.5
+        if dis.is_integer():
+            count += 1
+print(count)
+```
 ### 135C
 - 解答時間
     - 解けた(19分)
