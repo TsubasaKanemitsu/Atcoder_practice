@@ -615,6 +615,33 @@ for i in range(n - k + 1):
 
 print(diff)
 ```
+### 131C
+- 解答時間
+    - 13分(復習タイム)
+- パターン
+    - 集合
+    - 最大公倍数
+- 考察
+A以上B以下の数字がC, Dでも割り切れないかどうかをfor文で1つずつ調べていくのは，制約的に無理なことを認識する．
+次に思いついたのは，A以上B以下の整数がC, Dで割り切れる(c_num, d_num)またはCDの最小公倍数で割り切れる(cd_num)の集合を考え，それらの数値の個数を求め，b - a (c_num + d_num - cd_num) を行えば，求められると考えた．
+A以上B以下で割り切れる数字の個数は b // 割りたい数 - (a - 1) // 割りたい数で求められるので，この式を用いてc_num, d_num, cd_numを求める．
+ちなみにCDの最小公倍数はgcdなどを用いて求める．
+```
+a, b, c, d = list(map(int, input().split()))
+
+c_num = b // c - (a - 1) // c
+d_num = b // d - (a - 1) // d
+
+def lcm(a, b):
+    import math
+    return (a * b) // math.gcd(a, b)
+
+
+cd_num = b // lcm(c, d) - (a - 1) // lcm(c, d)
+cd_ans = c_num + d_num - cd_num
+
+print(b - (a - 1) - cd_ans)
+```
 ### 134C
 - 解答時間
     - 解けなかった
