@@ -490,6 +490,32 @@ for num in N:
 print(max(list(d.values())))
 ```
 ## アルゴリズム観点
+## 66C
+- 解答時間
+    - 25分
+- パターン
+    - データ構造: deque()
+- 考察
+制約条件的にaのi番目の要素をbの末尾に追加し，逆向きに並べ替えるという操作をn回行うのは，O(N^2)になるため計算量的に処理できないことがわかる．
+その次に考えられるのは，末尾に追加し，逆向きにするという部分でこの操作を先頭から追加に置き換えられないかと考えた．あとは具体例を参考に，nの偶奇とi番目の要素の偶奇を考慮し，条件を設定して，先頭から入れる要素と末尾から入れる要素を考えれば，O(N)で問題文通りの操作を行うことができる．
+```
+# 26分
+from collections import deque
+n = int(input())
+a = list(map(int, input().split()))
+
+ans = deque()
+
+for i in range(n):
+    if i % 2 == (n - 1) % 2:
+        ans.appendleft(a[i])
+    else:
+        ans.append(a[i])
+
+for i in ans:
+    print(i, '', end='')
+
+```
 ## DISCO presets ディスカバリーチャンネルコードコンテスト2020予選(B問題) (復習)
 - 解答時間
     - 解けなかった
