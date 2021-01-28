@@ -532,7 +532,41 @@ for i in ans:
 - 考察
 各学生の位置から最も近いチェックポイントがどこであるのかを調べればいいので，
 全探索で各学生ごとに全てのチェックポイントまでの距離を計算し，最短距離であるチェックポイントを選ぶようにすればいい．
+## ARC 109B (復習)
+- 解答時間
+    - 80分
+- パターン
+    - 二分探索
+- 考察
+長さ1からn + 1種類までの丸太から最小の本数で長さ1からnの丸太を1本ずつ作りたい．
+ということは，1 ~ n + 1の中から長い方から順に選んでいき，1からnの長さの合計を超えたところで選ぶ本数は終了という風に考えることができる．
+これをfor文でn+1から1ずつ減らしたものを加算していくのが最も単純な実装であるが，これは，O(N)であるため計算時間内に終わることができない．
+次に考える方法が二分探索を用いたものである．
+1 ~ n + 1の範囲で二分探索を行い，midからn + 1までの長さの総和が1 ~ nの総和と一番近くなるまで二分探索を続ける．
+最後のmidの値とn + 1の差分が1~nの長さを実現するのに必要となる最小の本数となる．
+```
+n = int(input())
 
+left = 1
+right = n + 1
+
+def binary_search(left, right, n):
+    sum_val = (n * (n + 1)) // 2
+    while right - left > 1:
+        mid = left + (right - left) // 2
+        # 区間和
+        w_sum = (n * (n + 1)) // 2 - (mid * (mid + 1)) // 2
+        num = w_sum + n + 1
+        if num >= sum_val:
+            left = mid
+        else:
+            right = mid
+    return left
+
+right = binary_search(left, right, n)
+count = n + 1 - right
+print(count)
+```
 ## 122C
 - 解答時間
     - 20分
@@ -668,6 +702,42 @@ for i in range(len(A)):
 
 print(count)
 
+```
+## ARC 108C
+- 解答時間
+    - 10分
+- パターン
+    - O(√N)問題
+- 考察
+n * m = pとなるn, mの組み合わせを純粋に考えると，O(N^2)となり計算時間内に間に合わない．
+n * m = pとなるn, mが存在するときは, n = p // xとなるxが存在し，このxはmと考えることができる．ここでn, mを1~pまでfor文で回すことを考えると両方でn, mとm,nの組み合わせが出てくることがわかる．(2 * 3 = 6 と3 * 2 = が出現するような感じ)
+よって，nは√Pまで全探索することでn * m = pとなるようなn, mを探すことができる．
+そのようなn, mがあるときにn + m がsになるかを判定すればいい
+```
+s, p = list(map(int, input().split()))
+
+
+def p_solve(p):
+    i = 1
+    n = []
+    m = []
+    while i * i <= p:
+        if p % i == 0:
+            n.append(i)
+            m.append(p//i)
+        i += 1
+    return n, m
+
+n, m = p_solve(p)
+
+if len(n) == 0:
+    print("No")
+else:
+    for i in range(len(n)):
+        if n[i] + m[i] == s:
+            print("Yes")
+            exit()
+    print("No")
 ```
 ### 115C
 - 解答時間
