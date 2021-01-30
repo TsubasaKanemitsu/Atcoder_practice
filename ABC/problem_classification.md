@@ -524,6 +524,35 @@ for i in ans:
     print(i, '', end='')
 
 ```
+## 77C (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 二分探索
+- 考察
+A < B < Cになるようなパーツの組み合わせの総和を求める必要がある．
+真ん中のBを固定して，B以下となるAの数とB以上となるCの数を掛け算すれば，A < B < Cとなるパーツの組み合わせがわかる．
+知る必要があるのは，Bに近いAの最大値が先頭から何番目であるのか?Bに近いCの最小値が先頭から何番目であるのかがわかれば，B以下のAの数とB以上のCの数がわかる．これを知るために，二分探索を利用したbisectというライブラリを使う．これは，与えられたターゲットを対象のリストの中に入れるなら何番目に入れることが可能なのかを返してくれる．bisectにより，知りたかった，B以下のAの個数とB以上のCの数を知ることができる．
+```
+# bisect (二分探索)
+import bisect
+
+n = int(input())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+C = list(map(int, input().split()))
+A.sort()
+B.sort()
+C.sort()
+lc = len(C)
+
+ans = 0
+for b in B:
+    a = bisect.bisect_left(A, b)
+    c = bisect.bisect_right(C, b)
+    ans += a * (lc - c)
+print(ans)
+```
 ## DISCO presets ディスカバリーチャンネルコードコンテスト2020予選(B問題) (復習)
 - 解答時間
     - 解けなかった
@@ -971,6 +1000,37 @@ ans = 0
 for i in range(len(A)):
     ans += (lcm_val - 1) % A[i]
 print(ans)
+```
+## 109C
+- 解答時間
+    - 8分30秒
+- パターン
+    - 最小公倍数
+- 考察
+この問題では，Xから与えられた地点までの距離へ行くために±Dしか勧めない制限がかけられている．そのため，最小で到達できる距離と最大で到達できる距離が倍数の関係になっていなければならないことがわかる．
+そのため，Xと与えられた地点の距離を算出し，それらの距離の最小公倍数となる値を求めればいい．
+```
+# 8分半
+import math
+
+n, X = list(map(int, input().split()))
+x_list = list(map(int, input().split()))
+
+min_val = min(x_list)
+
+diff = []
+for x in x_list:
+    _diff = abs(X - x)
+    if _diff == 0:
+        _diff = 2
+    diff.append(_diff)
+# print(diff)
+
+gcd = diff[0]
+for i in range(1, len(diff)):
+    gcd = math.gcd(gcd, diff[i])
+
+print(gcd)
 ```
 ## 140C
 - 解答時間
