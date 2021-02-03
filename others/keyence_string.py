@@ -9,6 +9,8 @@ else:
     for i in range(len(s)):
         for j in range(i, len(s)):
             t = ''
+            # 抜き出す部分文字列を決める部分
+            # i ~ jの区間を抜き出す部分文字列とする
             for k in range(len(s)):
                 if i <= k and k <= j:
                     continue
