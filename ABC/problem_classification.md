@@ -1014,7 +1014,36 @@ for a in A:
     # print(sum_other, select_other[a], select_own[a])
     print(ans)
 ```
+### CODE FESTIVAL 2016 qual A
+- 解答時間
+    - 20分
+- パターン
+    - 対応関係
+- 考察
+一番簡単なのはai = j, aj = iを満たすペアを求める方法だが，O(N^2)になるので，計算量的に無理．
+次に考えられるのはi番目の値がaiを好きで，ai番目のiを好きになればいいので，
+key, value = value, keyのような考え方をすることができる．これは，辞書的に考えているが，list的に考えると(配列の番号, value) = (value, 配列の番号)になる．
+```
+n = int(input())
+a = list(map(int, input().split()))
 
+ans = dict()
+for i in range(len(a)):
+    ans[i + 1] = a[i]
+
+count = 0
+for i in range(len(a)):
+    key = i + 1
+    value = ans[key]
+    if ans[value] == key:
+        count += 1
+
+if count == 0:
+    count = 0
+else:
+    count = count // 2
+print(count)
+```
 ## 数学観点
 ### 55B
 - 解答時間
@@ -1238,3 +1267,11 @@ else:
     print("No")
 
 ```
+
+### AGC 40 A (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 左右の文字の数による考え方
+- 考察
+[参考](https://img.atcoder.jp/agc040/editorial.pdf)
