@@ -53,6 +53,58 @@ for i in range(n):
             ans += 1
 print(ans)
 ```
+### AGC 6 A
+- 解答時間
+    - 40分
+- パターン
+    - 部分文字列比較
+- 考察
+文字列の一致パターンとして全文字一致，部分文字列一致，全不一致の3パターンにわけることができる．
+1. 全文字一致は長さN
+2. 全不一致の場合は2N
+3. 部分文字列一致の場合は，sの先頭からi番目以降の文字列がtのi番目以前の文字列が一致するかを判別することでi番目までの一致しない文字列分と一致している文字列分を足した長さの3パターンで表現することができる．
+```
+n = int(input())
+s = input()
+t = input()
+
+if s == t:
+    print(len(s))
+    exit()
+
+match_cnt = 0
+cnt = 0
+for i in range(len(s)):
+    for j in range(len(s) - i):
+        if s[i + j] != t[j]:
+            cnt += 1
+            match_cnt = 0
+            break
+        else:
+            match_cnt += 1
+    if match_cnt == len(s) - i:
+        break
+ans = cnt + match_cnt + len(t) - match_cnt
+
+print(ans)
+
+# 他の解答でわかりやすいもの
+# N = int(input())
+# s = input()
+# t = input()
+# if s == t:
+#     print(N)
+#     exit()
+# c = 0
+# for i in range(N):
+#     if s[i:] == t[:-i]:
+#         c = i
+#         break
+# if c:
+#     print(c + (N - c) + c)
+# else:
+#     print(N + N)
+```
 ### 174D(復習)
 - 解答時間
     - 解けなかった
@@ -108,6 +160,13 @@ while k < num_kind:
     i += 1
 print(ans)
 ```
+### 116C (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 数え上げ
+- 考察
+
 ### 121C
 - 解答時間
     - 解けなかった(復習はいらない，問題を解く方針は合っていた)

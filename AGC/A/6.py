@@ -21,3 +21,20 @@ for i in range(len(s)):
 ans = cnt + match_cnt + len(t) - match_cnt
 
 print(ans)
+
+# 他の解答でわかりやすいもの
+# N = int(input())
+# s = input()
+# t = input()
+# if s == t:
+#     print(N)
+#     exit()
+# c = 0
+# for i in range(N):
+#     if s[i:] == t[:-i]:
+#         c = i
+#         break
+# if c:
+#     print(c + (N - c) + c)
+# else:
+#     print(N + N)
