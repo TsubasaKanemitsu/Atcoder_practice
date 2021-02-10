@@ -11,7 +11,7 @@ cnt = 0
 while True:
     if max(h) == 0:
         break
-    
+    # 区間分割 & カウント
     i = 0
     while i < n:
         # 0の箇所がきたら飛ばして，次の区間へ移る
