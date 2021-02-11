@@ -53,6 +53,39 @@ for i in range(n):
             ans += 1
 print(ans)
 ```
+### 137C
+- 解答時間
+    - 18分
+- パターン
+    - 文字列一致，計算量
+- 考察
+与えられた文字列がアナグラムになる組み合わせは何パターンあるかを求める問題
+1. 同じ文字が複数回現れるとき，アナグラムとなるのである一方の文字列の各文字の出現回数ともう一方の文字列の各文字の出現回数が一致するかを比較すればいいが，この方法では計算量が膨大になるため，実装としては没となる．
+2. アナグラムになるということは文字列をソートして並び変えたときにまったく同じ文字列になるということなので，与えられた文字列をソートする．
+3. ソートした文字列をカウントし，2以上であるものは組み合わせを考えられるので，
+カウント数 × (カウント数 - 1) / 2を2以上カウントされた回数にあてはめて計算することでアナグラムの組み合わせ数を求めることができる．
+```
+# 18分
+from collections import defaultdict
+from math import factorial
+
+
+def combinations_count(n, r):
+    import math
+    return math.factorial(n) // ((math.factorial(n - r)) * math.factorial(r))
+
+n = int(input())
+S = [''.join(sorted(list(input()))) for _ in range(n)]
+
+cnt = defaultdict(int)
+for s in S:
+    cnt[s] += 1
+ans = 0
+for k, v in cnt.items():
+    if v >= 2:
+        ans += combinations_count(v, 2)
+print(ans)
+```
 ### AGC 6 A
 - 解答時間
     - 40分
