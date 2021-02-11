@@ -1061,6 +1061,13 @@ for i in range(n - k + 1):
 
 print(diff)
 ```
+### 48B (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 集合，割り切れる数
+- 考察
+[参考](https://www.geisya.or.jp/~mwm48961/koukou/mobile/s1set07_m.htm)
 ### 131C
 - 解答時間
     - 13分(復習タイム)
