@@ -9,12 +9,10 @@ for i in range(n):
     
 work = sorted(work, key=lambda x: x[1])
 
-time_cum_sum = [work[0][0]]
-for i in range(1, len(work)):
-    time_cum_sum.append(time_cum_sum[i - 1] + work[i][0])
-
+time = 0
 for i in range(len(work)):
-    if time_cum_sum[i] > work[i][1]:
+    time += work[i][0]
+    if time > work[i][1]:
         print("No")
         exit()
 print("Yes")
