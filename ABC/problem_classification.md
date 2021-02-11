@@ -181,6 +181,35 @@ while k < num_kind:
     i += 1
 print(ans)
 ```
+### 82C 
+- 解答時間
+    - 18分
+    - 1WA
+- パターン
+    - ハッシュテーブル，条件
+- 考察
+与えられた数列の各数値と出現回数が一致させるために数列内の数値を取り除く操作回数の最小の値を求める．
+1. 数値と出現回数をハッシュテーブルで作成する．
+2. 数値と出現回数が一致しているかを判定し，一致しない場合は以下の2パターンの対処を行う．まず出現回数が数値より大きい場合は，取り除く回数は差分となる．出現回数が数値より小さい場合，出現回数を増やす操作はできないため，出現回数を0にする操作が必要となる．この2つの操作を与えられた数列に行うことで操作の最小回数が求まる．
+```
+from collections import defaultdict
+n = int(input())
+A = list(map(int, input().split()))
+
+cnt = defaultdict(int)
+for a in A:
+    cnt[a] += 1
+
+ans = 0
+for a in set(A):
+    if cnt[a] != a:
+        if cnt[a] >= a:
+            ans += cnt[a] - a
+        else:
+            ans += cnt[a]
+print(ans)
+
+```
 ### 116C (復習)
 - 解答時間
     - 解けなかった
@@ -706,6 +735,34 @@ for i in ans:
     print(i, '', end='')
 
 ```
+### 68C (復習?)
+- 解答時間
+    - 40分
+- パターン
+    - ハッシュ，グラフ系
+- 考察
+1. 開始位置と終了位置の関係をハッシュマップで定義する．
+そうすることで終了地点⇒次の開始地点⇒終了地点⇒という風に位置を移動することができる．
+2. 1つの開始位置から複数種類の終了地点到達する可能性もあるので，ハッシュテーブルとして値をもつときに，リスト型にする必要がある．
+3. 今回は2回の定期便の移動で目的地にたどり着けるかを聞かれているので，1回目に乗った定期便の終了地点を開始位置として，終了地点を取得し(複数の場合あり),
+その終了地点の中に目的値が入っていれば，到達可能である．
+```
+from collections import defaultdict
+n, m = list(map(int, input().split()))
+_bin = defaultdict(list)
+
+for i in range(m):
+    a, b = list(map(int, input().split()))
+    _bin[a].append(b)
+
+st = _bin[1]
+for s in st:
+    if n in _bin[s]:
+        print("POSSIBLE")
+        exit()
+print("IMPOSSIBLE")
+``` 
+
 ### 77C (復習)
 - 解答時間
     - 解けなかった
