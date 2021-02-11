@@ -8,9 +8,8 @@ for a in A:
 
 ans = 0
 for a in set(A):
-    if cnt[a] != a:
-        if cnt[a] >= a:
-            ans += cnt[a] - a
-        else:
-            ans += cnt[a]
+    if cnt[a] >= a:
+        ans += cnt[a] - a
+    else:
+        ans += cnt[a]
 print(ans)
