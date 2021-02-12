@@ -138,6 +138,54 @@ print(ans)
 # else:
 #     print(N + N)
 ```
+### 158D (復習)
+- 解答時間
+    - 解けなかった
+    - 解法は大まかに思い浮かんでいた．
+    - 解説AC
+- パターン
+    - deque()
+- 考察
+問題文通りの実装だと，t == 1のreverseにおいて文字数が多い場合にTLEになってしまう．
+そこでt = 1のときに，reverseを行わずに文字列の先頭への追加と末尾への追加を正しく行う必要がある．
+1. reverseが起きるたびに文字列の先頭と末尾が入れ替わるため，情報を持っておく必要があるため，t == 1のときに先頭と末尾の情報を更新する．
+2. 先頭と末尾の情報を元に文字列への追加方法を適切に行う．appendleftとappendを先頭と末尾情報の条件によって使い分ける．
+3. 最後にreverseが起きた回数が偶数回であれば，文字列の入れ替えを行わなくていいが，奇数回の場合はreverseを一回行う必要がある．
+これらの処理により時間内で処理が終わる.  注意点として，文字列の追加はデータ構造をdequeにし，O(1)で追加処理を終わらせる必要がある．
+'''
+from collections import deque
+s = deque(input())
+
+Q = int(input())
+
+st = 0
+rev_cnt = 0
+for i in range(Q):
+    q = list(input().split())
+    t = q[0]
+    if t == '1':
+        rev_cnt += 1
+        if st == -1:
+            st = 0
+        else:
+            st = -1
+    elif t == '2':
+        f = q[1]
+        c = q[2]
+        if f == '1':
+            if st == 0:
+                s.appendleft(c)
+            else:
+                s.append(c)
+        elif f == '2':
+            if st == 0:
+                s.append(c)
+            else:
+                s.appendleft(c)
+if rev_cnt % 2 == 1:
+    s.reverse()
+print(''.join(s))
+'''
 ### 174D(復習)
 - 解答時間
     - 解けなかった
