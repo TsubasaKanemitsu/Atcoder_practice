@@ -229,6 +229,36 @@ AKIHABARAの中で4つのAがそれぞれある場合とない場合の全パタ
 例外として，色が決まっているレート帯の人がいない場合は，最小数は3200以上のレート帯の人たちが同じ色を選ぶ必要があるため1種類となり，最大数は3200以上のレート帯の人たちがバラバラに色を選ぶことになるので，3200以上のレート帯の人数分となる．
 2. 3200以上のレートの人がいない場合
 最小数から色を増やす手段がないため最小数と最大数は色が決まっている人のレート帯の種類と同じになる．
+### 65C 
+- 解答時間
+    - 17分
+- パターン
+    - 場合分け
+- 考察
+[参考](https://img.atcoder.jp/arc076/editorial.pdf)
+```
+# 22分
+# 参考 https://img.atcoder.jp/arc076/editorial.pdf
+n, m = list(map(int, input().split()))
+
+def permutaions_count(n, r):
+    import math
+    return math.factorial(n) // math.factorial(n - r)
+
+if abs(n - m) > 1:
+    print(0)
+    exit()
+else:
+    if n % 2 == 0 and m % 2 == 0:
+        ans = 2 * permutaions_count(n, n) * permutaions_count(m, m) % (10 ** 9 + 7)
+    elif n % 2 == 0 and m % 2 == 1:
+        ans = permutaions_count(n, n) * permutaions_count(m, m) % (10 ** 9 + 7)
+    elif n % 2 == 1 and m % 2 == 0:
+        ans = permutaions_count(n, n) * permutaions_count(m, m) % (10 ** 9 + 7)
+    elif n % 2 == 1 and m % 2 == 1:
+        ans = 2 * permutaions_count(n, n) * permutaions_count(m, m) % (10 ** 9 + 7)
+    print(ans)
+```
 ### 94C (復習)
 - 解答時間
     - 解けなかった
@@ -1074,6 +1104,13 @@ for i in range(q):
     print(count_list[r[i] - 1] - count_list[l[i] - 1])
 
 ```
+### 143D (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 2分探索
+- 考察
+[参考](https://img.atcoder.jp/abc143/editorial.pdf)
 ### 154D(復習)
 - 解答時間
     - 解けなかった
@@ -1178,6 +1215,15 @@ print(count)
 #         odd *= 2
 # print(3 ** n - odd)
 ```
+### 183C (復習)
+- 解答時間
+    - 40分 (調べながら解けた)
+- パターン
+    - いもす法，シミュレーション
+- 考察
+SiやTiの時刻が到達するごとに使用するお湯が増えたり減ったりするので，それぞれの時刻のタイミングでお湯を増減するように計算すればいいことがわかる．
+今回は計算量が小さいので，2 * 10 ** 5の長さのリストに時刻が来るたびに増減分を付与する．そのリストの累積和をとることで，同時刻に複数人がお湯を利用している場合，全員分のその時刻におけるお湯の使用量を求めることができる．最後に累積和の各値が毎分供給しているお湯Wリットルより多いか少ないかを判定することで答えが求まる．
+※計算量が多い場合は，時刻とお湯の量をハッシュテーブルに保存し，到達時刻ごとにお湯の量を増減させるようなシミュレーション的な方法もとれる．
 
 ## 計算量観点
 ### 73C
