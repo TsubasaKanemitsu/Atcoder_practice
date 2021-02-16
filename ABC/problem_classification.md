@@ -319,6 +319,36 @@ for a in set(A):
         ans += cnt[a]
 print(ans)
 ```
+### 89C 
+- 解答時間
+    - 21分
+- パターン
+    - 場合分け，組み合わせ全探索
+- 考察
+制約として名前がM, A, R, C, Hから始まりかつ同じ文字から始まる人がいないという中での組み合わせを考える必要がある．
+1. M, A, R, C, Hの中から3つの文字を選ぶ
+2. 各文字の中の人から1人ずつ選ぶ
+以上の2段階の組み合わせが存在する．
+よって解法はMARCHで始まるそれぞれの人数を求め，1の組み合わせ×2の各文字あたりの人数(3人)をかけることで求めることができる．
+```
+# 21分
+import itertools
+n = int(input())
+
+S = [input() for _ in range(n)]
+
+m = len([s for s in S if s[0] == 'M'])
+a = len([s for s in S if s[0] == 'A'])
+r = len([s for s in S if s[0] == 'R'])
+c = len([s for s in S if s[0] == 'C'])
+h = len([s for s in S if s[0] == 'H'])
+
+name = [m, a, r, c, h]
+cnt = 0
+for comb in itertools.combinations(name, 3):
+    cnt += comb[0] * comb[1] * comb[2]
+print(cnt)
+```
 ### 116C (復習)
 - 解答時間
     - 解けなかった
