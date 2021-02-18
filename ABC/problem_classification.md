@@ -268,6 +268,13 @@ else:
         ans = 2 * permutaions_count(n, n) * permutaions_count(m, m) % (10 ** 9 + 7)
     print(ans)
 ```
+### 67C (復習)
+- 解答時間
+    - 解けなかった
+    - 解法はほぼ一緒なぜかテストが通らなかった
+- パターン
+- 考察
+[参考](https://img.atcoder.jp/arc078/editorial.pdf)
 ### 94C (復習)
 - 解答時間
     - 解けなかった
