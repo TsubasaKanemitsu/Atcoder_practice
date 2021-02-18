@@ -714,6 +714,16 @@ else:
     print("No")
 
 ```
+### 182D (復習)
+- 解答時間
+    - 解けなかった
+- パターン
+    - 累積和の応用，最大値更新
+- 考察
+愚直に最大値を求めるとo(N ** 2)のため，TLEとなる．
+そのため以下のように考えて解けばよい．
+[参考](https://blacktanktop.hatenablog.com/entry/2020/11/09/071456)
+[参考](https://drken1215.hatenablog.com/entry/2020/11/30/031357)
 ### diverta 2019  Programming Contest B
 - 解答時間
     - 10分
