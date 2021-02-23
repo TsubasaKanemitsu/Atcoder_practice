@@ -1,3 +1,4 @@
+# 復習
 n, k = list(map(int, input().split()))
 r, s, p = list(map(int, input().split()))
 t = input()
