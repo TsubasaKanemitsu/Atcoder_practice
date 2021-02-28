@@ -1,3 +1,4 @@
+# https://drken1215.hatenablog.com/entry/2020/01/05/154700
 a, b, x = list(map(int, input().split()))
 
 n = 10 ** 9
