@@ -5,7 +5,8 @@ n, m = list(map(int, input().split()))
 class UnionFind():
     def __init__(self, n):
         self.parents = [-1] * n
-    
+        # self.n = n
+
     # 親を見つける
     def find(self, x):
         # 頂点の場合
@@ -32,10 +33,19 @@ class UnionFind():
         # 頂点x, yを結合する
         self.parents[x] += self.parents[y]
         self.parents[y] = x
+    
+    # def same(self, x, y):
+    #     return self.find(x) == self.find(y)
 
     def size(self, x):
         return - 1 * self.parents[x]
 
+    # def groups():
+    #     out_dict = defaultdict(list)
+    #     for i in range(self.n):
+    #         parent = self.find(i)
+    #         out_dict[parent].append(i)
+    #     return out_dict
 
 uf = UnionFind(n)
 for i in range(m):
