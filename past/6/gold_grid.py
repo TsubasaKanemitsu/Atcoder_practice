@@ -6,7 +6,7 @@ def construct_grid():
     for _ in range(n):
         ox, oy = map(int, input().split())
         grid[(ox, oy)] = '#'
-
+    
     for i in range(- 202, 202 + 1):
         grid[(202, i)] = '#'
         grid[(-202, i)] = '#'
