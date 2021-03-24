@@ -1,0 +1,2 @@
+q = int(input())
+
