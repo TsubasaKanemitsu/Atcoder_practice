@@ -19,6 +19,8 @@ S = [input() for _ in range(n)]
 # n = 1のとき，y_n = Trueの1通り
 # True, Falseとなるときの条件を考える
 # X_n, Y_n-1の関係性
+# 漸化式
+
 ans = 1
 for i in range(n - 1, -1, -1):
     if S[i] == 'OR':
