@@ -117,7 +117,7 @@ class UnionFind():
     #     for i in range(self.n):
     #         parent = self.find(i)
     #         out_dict[parent].append(i)
-    #     return out_dict
+    #     retu                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rn out_dict
 
 def factorization(n):
     i = 2
