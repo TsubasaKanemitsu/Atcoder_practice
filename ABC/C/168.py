@@ -1,3 +1,4 @@
+# 余弦定理を使用している
 import math
 a, b, h, m = list(map(int, input().split()))
 
