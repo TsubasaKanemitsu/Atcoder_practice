@@ -45,6 +45,11 @@ def gcd(a, b):
 
     return b
 
+# フェルマーの小定理(a, modは互いに素でなければならない)
+# 高速に逆元を求める
+def fermat(a, mod):
+    return pow(a, mod - 2, mod)
+
 # 最小公倍数
 def lcm(x, y):
     import math

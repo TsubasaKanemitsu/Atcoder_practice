@@ -14,8 +14,14 @@ q = int(input())
 B = [int(input()) for _ in range(q)]
 
 A.sort()
-
+len_a = len(A)
 ans = []
 for i in range(q):
     index = bisect.bisect_left(A, B[i])
-    print(min(abs(A[index - 1] - B[i]), abs(A[index] - B[i])))
+    diff1 = 10 ** 99
+    diff2 = 10 ** 99
+    if index < n:
+        diff1 = abs(A[index] - B[i])
+    if index >= 1:
+        diff2 = abs(A[index - 1] - B[i])
+    print(min(diff1, diff2))
