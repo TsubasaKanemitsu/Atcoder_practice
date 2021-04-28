@@ -50,6 +50,17 @@ def gcd(a, b):
 def fermat(a, mod):
     return pow(a, mod - 2, mod)
 
+
+# 拡張ユークリッド互除法
+# aの逆元を高速で求める
+def extgcd(a, b):
+    if b:
+        d, y, x = extgcd(b, a % b)
+        y -= (a // b) * x
+        return d, x, y
+    return a, 1, 0
+
+
 # 最小公倍数
 def lcm(x, y):
     import math
