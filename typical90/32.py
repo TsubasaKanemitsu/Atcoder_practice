@@ -1,3 +1,5 @@
+# 順列全探索
+# 30分
 import itertools
 N = int(input())
 A = [list(map(int, input().split())) for _ in range(N)]
@@ -8,7 +10,7 @@ xy = set()
 for x, y in XY:
     xy.add(f'{x}:{y}')
     xy.add(f'{y}:{x}')
-    
+
 ans = 10 ** 99
 for perm in itertools.permutations([i for i in range(1, N + 1)]):
     flag = True
