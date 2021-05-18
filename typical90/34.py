@@ -1,40 +1,29 @@
-from collections import deque
-import random
+from collections import deque, defaultdict
+
 
 n, k = list(map(int, input().split()))
 A = list(map(int, input().split()))
 
-# n = random.randint(1, 10 ** 5)
-# k = random.randint(1, n)
-# A = [random.randint(1, 10 ** 9) for _ in range(n)]
+cnt = defaultdict(int)
+num = set()
+Q = deque()
 
-rm_num = set()
-unique_num = set()
-ans = deque()
-
-# ans = 0
-# for i in range(n):
-#     for j in range(i + 1, n + 1):
-#         num_kind = len(set(A[i:j]))
-#         if num_kind <= k:
-#             ans = max(ans, len(A[i:j]))
-# print(ans)
-
-length = 0
+c = 0
+ans = 0
 for i in range(n):
-    unique_num.add(A[i])
-    ans.append(A[i])
-    if len(unique_num) > k:
-        rm_n = ans.popleft()
-        unique_num.remove(rm_num)
-        # try:
-        #     rm_num = ans.popleft()
-        #     unique_num.remove(rm_num)
-        # except Exception as e:
-        #     print("err:", e)
-        #     print("rm", rm_num)
-        while ans[0] == rm_num:
-            ans.popleft()
-    length = max(length, len(ans))
-print(length)
-    
+    Q.append(A[i])
+    # 現在，キューの中に入っている要素の個数をカウント
+    cnt[A[i]] += 1
+    # 一意な値の個数をカウント
+    num.add(A[i])
+    if len(num) > k:
+        while len(num) > k:
+            s = Q.popleft()
+            # キューの左端から排出した数値をデクリメント
+            cnt[s] -= 1
+            # キューの中から該当の数値が消えたら一意な値を減らす
+            if cnt[s] == 0:
+                num.remove(s)
+    c = len(Q)
+    ans = max(ans, c)
+print(ans)
