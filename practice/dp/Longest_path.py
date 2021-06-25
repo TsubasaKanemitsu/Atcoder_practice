@@ -28,6 +28,7 @@ def f(s):
     # メモ化しながらreturn
     return path[s]
 
+
 ans = 0
 for i in range(1, n + 1):
     ans = max(ans, f(i))
