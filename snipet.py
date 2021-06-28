@@ -1,10 +1,12 @@
 # 10進数をn進数に変換
 def Base_10_to_n(X, n):
-    if (int(X/n)):
-        return Base_10_to_n(int(X/n), n)+str(X%n)
-    return str(X%n)
+    if (int(X / n)):
+        return Base_10_to_n(int(X / n), n) + str(X % n)
+    return str(X % n)
 
 # 重複なし3重ループ
+
+
 def triple_roop(n):
     for i in range(1, n - 1):
         for j in range(i + 1, n):
@@ -12,6 +14,8 @@ def triple_roop(n):
                 print(i, j, k)
 
 # 素数判定
+
+
 def is_prime(n):
     if n == 1:
         return False
@@ -23,6 +27,8 @@ def is_prime(n):
     return True
 
 # 約数列挙
+
+
 def divisor(n):
     i = 1
     divisor_list = []
@@ -37,6 +43,8 @@ def divisor(n):
 
 # 最大公約数
 # mathライブラリのmath.gcd(x, y)も使える
+
+
 def gcd(a, b):
     if a < b:
         a, b = b, a
@@ -47,6 +55,8 @@ def gcd(a, b):
 
 # フェルマーの小定理(a, modは互いに素でなければならない)
 # 高速に逆元を求める
+
+
 def fermat(a, mod):
     return pow(a, mod - 2, mod)
 
@@ -67,14 +77,19 @@ def lcm(x, y):
     return (x * y) // math.gcd(x, y)
 
 # 組み合わせ総数
+
+
 def combinations_count(n, r):
     import math
     return math.factorial(n) // ((math.factorial(n - r)) * math.factorial(r))
 
 # 順列総数
+
+
 def permutaions_count(n, r):
     import math
     return math.factorial(n) // math.factorial(n - r)
+
 
 def bit_plus(list):
     sum = 0
@@ -88,7 +103,9 @@ def bit_plus(list):
                 sum += list[i]
     return sum
 
+
 print(bit_plus(list))
+
 
 class UnionFind():
     def __init__(self, n):
@@ -105,7 +122,7 @@ class UnionFind():
             # 経路圧縮
             self.parents[x] = self.find(self.parents[x])
             return self.parents[x]
-    
+
     def union(self, x, y):
         # x, yの頂点を探す
         x = self.find(x)
@@ -114,14 +131,14 @@ class UnionFind():
         if x == y:
             return 0
 
-        # xの頂点がyの頂点より大きい場合, 入れ替える        
+        # xの頂点がyの頂点より大きい場合, 入れ替える
         if self.parents[x] > self.parents[y]:
             x, y = y, x
 
         # 頂点x, yを結合する
         self.parents[x] += self.parents[y]
         self.parents[y] = x
-    
+
     # def same(self, x, y):
     #     return self.find(x) == self.find(y)
 
@@ -133,7 +150,9 @@ class UnionFind():
     #     for i in range(self.n):
     #         parent = self.find(i)
     #         out_dict[parent].append(i)
-    #     return out_dict                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rn out_dict
+    # return out_dict
+    # rn out_dict
+
 
 def factorization(n):
     i = 2
@@ -149,6 +168,5 @@ def factorization(n):
 
     if n != 1:
         result.append((n, 1))
-    
-    return result
 
+    return result

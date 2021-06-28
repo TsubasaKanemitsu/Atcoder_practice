@@ -2,12 +2,13 @@
 
 a, b = list(map(int, input().split()))
 
+
 def f(n):
-	if (n // 2) % 2 == 1:
-		ans = n ^ 1
-	else:
-		ans = n ^ 0
-	return ans
+    if (n // 2) % 2 == 1:
+        ans = n ^ 1
+    else:
+        ans = n ^ 0
+    return ans
 
 
 F_a = f(a - 1)
