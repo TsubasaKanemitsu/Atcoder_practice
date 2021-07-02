@@ -1,3 +1,4 @@
+# 想定解法と同じ
 s_dash = input()
 t = input()
 
