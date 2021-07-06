@@ -1,45 +1,59 @@
-# Union Find木
+import sys
+sys.setrecursionlimit(10 ** 7)
 from collections import defaultdict
+
 n, m = list(map(int, input().split()))
 
-graph = defaultdict(list)
-cnt = defaultdict(int)
-for _ in range(m):
-    a, b = list(map(int, input().split()))
-    graph[a].append(b)
-    graph[b].append(a)
+graph = [[False] * (n + 1) for _ in range(n + 1)]
+AB = [list(map(int, input().split())) for _ in range(m)]
+
+for i in range(m):
+    a, b = AB[i]
+    graph[a][b] = True
+    graph[b][a] = True
 
 visited = [False] * (n + 1)
 
-print(graph)
-def dfs(v, visited):
-    
+# ある一つの頂点からある頂点を通らない場合に、
+# 他のすべての頂点を通ることができるかどうか
+def dfs(v):
     if visited[v]:
         return
-
     visited[v] = True
-
-    for e in graph[v]:
+    for e in range(1, n + 1):
+        # パスが通っていない場合
+        if not graph[v][e]:
+            continue
+        # 既に到達済みの場合
         if visited[e]:
             continue
-        dfs(e, visited)
+        dfs(e)
 
 
 ans = 0
-for i in range(1, n + 1):
-    if len(graph[i]) == 1:
-        print(i, graph[i])
-        ans += 1
-    for e in graph[i]:
-        for e2 in graph[i]:
-            visited = [False] * (n + 1)
-            if e2 == e:
-                continue
-            visited[i] = True
-            dfs(e2, visited)
-            print(i, visited, e2, e)
-            if not visited[e]:
-                print("cnt")
-                cnt[(min(i, e), max(i, e))] += 1
+# 辺を1本ずつ外して考える
+for i in range(m):
+    a, b = AB[i]
+    graph[a][b] = False
+    graph[b][a] = False
+    
+    # 頂点の到達の管理
+    visited = [False] * (n + 1)
+    
+    # 全ての頂点が連結しているかどうかを
+    # 確認したいのでどこを頂点として始めてもいい
+    dfs(1)
 
-print(cnt)
+    # 橋がない
+    bridge = False
+    for j in range(1, n + 1):
+        if not visited[j]:
+            bridge = True
+            break
+    
+    if bridge:
+        ans += 1
+    graph[a][b] = True
+    graph[b][a] = True
+
+print(ans)
