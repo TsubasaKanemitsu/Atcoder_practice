@@ -1,8 +1,8 @@
 # 10進数をn進数に変換
-def Base_10_to_n(X, n):
-    if (int(X / n)):
-        return Base_10_to_n(int(X / n), n) + str(X % n)
-    return str(X % n)
+def Base_10_to_n(n, b):
+    if n // b:
+        return Base_10_to_n(n // b, b) + str(n % b)
+    return str(n % b)
 
 # 重複なし3重ループ
 
@@ -170,3 +170,4 @@ def factorization(n):
         result.append((n, 1))
 
     return result
+

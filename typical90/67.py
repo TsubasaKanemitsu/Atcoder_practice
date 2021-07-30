@@ -3,18 +3,23 @@ sys.setrecursionlimit(10 ** 7)
 
 N, K = input().split()
 
-def Base_10_to_n(X, N):
-    if (int(X / N)):
-        return Base_10_to_n(int(X / N), N) + str(X % N)
-    return str(X % N)
+def Base_10_to_n(n, b):
+    if n // b:
+        return Base_10_to_n(n // b, b) + str(n % b)
+    return str(n % b)
 
-oct = [int(c) for c in N[::-1]]
 
+num = N
+ten = 0
 for i in range(int(K)):
-    dec = sum([o * 8 ** i for i, o in enumerate(oct)])
-    nine = Base_10_to_n(dec, 9)
-    oct = str(nine).replace('8', '5')
-    oct = list(map(int, list(oct)))
-    oct = oct[::-1]
+    base_10 = int(num, 8)
+    # 9進数
+    base_9 = str(Base_10_to_n(base_10, 9))
+    num = ""
+    for j in range(len(base_9)):
+        if base_9[j] == "8":
+            num += "5"
+        else:
+            num += base_9[j]
 
-print(*oct[::-1], sep="")
+print(num)

@@ -10,6 +10,7 @@ graph = defaultdict(list)
 for _ in range(m):
     x, y = list(map(int, input().split()))
     graph[x].append(y)
+    graph[y].append(x)
 
 
 path = [0] * (n + 1)
