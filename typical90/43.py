@@ -1,57 +1,48 @@
 from collections import deque
-import pprint
 h, w = list(map(int, input().split()))
-sy, sx = list(map(int, input().split()))
-gy, gx = list(map(int, input().split()))
+rs, cs = list(map(int, input().split()))
+rt, ct = list(map(int, input().split()))
+
+rs, cs = rs - 1, cs - 1
+rt, ct = rt - 1, ct - 1
 
 graph = [list(input()) for _ in range(h)]
 
-def bfs():
-    st = (sx - 1, sy - 1)
+
+def bfs(rs, cs, rt, ct):
     Q = deque()
-    Q.append(st)
-    
-    visited = [[False] * w for _ in range(h)]
-    dist = [[0] * w for _ in range(h)]
-    curve_cnt = [[0] * w for _ in range(h)]
-    
-    visited[0][0] = True
-    
-    pre_st = (sx - 1, sy - 1)
-    pre_Q = deque()
-    pre_Q.append(pre_st)
 
+    dist = [[10 ** 18 + 1] * w for _ in range(h)]
+    # 初期化
+    for i in range(4):
+        dist[rs][cs] = 0
+        Q.append((rs, cs, i, 0))
+
+    # 上下左右への移動
+    pos = ((-1, 0), (0, -1), (1, 0), (0, 1))
     while len(Q) > 0:
-        pre_x, pre_y = pre_Q.popleft()
-        x, y = Q.popleft()
-        pos = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        for dx, dy in pos:
-            X = x + dx
-            Y = y + dy
-            if not 0 <= X < w or not 0 <= Y < h:
-                continue
-            if graph[Y][X] == '#':
-                continue
-            if visited[Y][X]:
-                continue
-            dist[Y][X] = dist[y][x] + 1
-            visited[Y][X] = True
-            Q.append((X, Y))
+        # print("Q", Q)
+        rv, cv, _dir, cost = Q.popleft()
+        
+        for i in range(4):
+            dx = pos[i][0]
+            dy = pos[i][1]
+            nx = rv + dx
+            ny = cv + dy
             
-            diff_x = abs(x - pre_x)
-            diff_y = abs(y - pre_y)
-            if diff_x == 0 and diff_y == 1:
-                if abs(pre_x - X) == 1:
-                    curve_cnt[Y][X] = curve_cnt[y][x] + 1
-                else:
-                    curve_cnt[Y][X] = curve_cnt[y][x]
-            if diff_x == 1 and diff_y == 0:
-                if abs(pre_y - Y) == 1:
-                    curve_cnt[Y][X] = curve_cnt[y][x] + 1
-                else:
-                    curve_cnt[Y][X] = curve_cnt[y][x]
-            pre_Q.append((x, y))
-    return curve_cnt[gy - 1][gx - 1]
+            if not 0 <= nx < h or not 0 <= ny < w:
+                continue
+            if graph[nx][ny] == '#':
+                continue
+            
+            if _dir != i and dist[nx][ny] > cost:
+                dist[nx][ny] = cost + 1
+                Q.append((nx, ny, i, cost + 1))
+            elif _dir == i and dist[nx][ny] >= cost:
+                dist[nx][ny] = cost
+                Q.appendleft((nx, ny, i, cost))
+    return dist[rt][ct]
 
 
-print(bfs())
+dist = bfs(rs, cs, rt, ct)
+print(dist)
