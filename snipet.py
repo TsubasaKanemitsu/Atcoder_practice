@@ -13,9 +13,8 @@ def triple_roop(n):
             for k in range(j + 1, n + 1):
                 print(i, j, k)
 
+
 # 素数判定
-
-
 def is_prime(n):
     if n == 1:
         return False
@@ -26,9 +25,8 @@ def is_prime(n):
         i += 1
     return True
 
+
 # 約数列挙
-
-
 def divisor(n):
     i = 1
     divisor_list = []
