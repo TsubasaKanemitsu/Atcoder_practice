@@ -1,10 +1,8 @@
 # 60min
 
 # DFS
-
 import sys
 sys.setrecursionlimit(10 ** 7)
-from collections import defaultdict
 
 
 n = int(input())
@@ -21,11 +19,6 @@ TKA = [list(map(int, input().split())) for _ in range(n)]
 # 技の習得の組み合わせがグラフになっていることを見抜くのが重要!!
 
 Tn, Kn, An = TKA[n - 1][0], TKA[n - 1][1], TKA[n - 1][2:]
-
-graph = defaultdict(list)
-for A in An:
-    graph[A].extend(TKA[A - 1][2:])
-
 
 ans = 0
 visited = [False] * n
