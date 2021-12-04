@@ -1,5 +1,6 @@
 # 17分
 # GCD, 素因数分解
+# https://drken1215.hatenablog.com/entry/2018/12/23/012300
 
 n, p = list(map(int, input().split()))
 
