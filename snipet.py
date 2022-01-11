@@ -169,3 +169,38 @@ def factorization(n):
 
     return result
 
+
+# 二項係数演算
+# https://drken1215.hatenablog.com/entry/2018/06/08/210000
+def binomial_coefficient_table(n):
+    MOD = 10 ** 9 + 7
+    fac = [0] * (n + 1)
+    finv = [0] * (n + 1)
+    inv = [0] * (n + 1)
+
+    fac[0], fac[1] = 1, 1
+    finv[0], finv[1] = 1, 1
+    inv[1] = 1
+
+    for i in range(2, n + 1):
+        fac[i] = fac[i - 1] * i % MOD
+        inv[i] = MOD - inv[MOD % i] * (MOD // i) % MOD
+        finv[i] = finv[i - 1] * inv[i] % MOD
+
+    return fac, finv
+
+# O(1)
+def binomial_coefficient(n, k, fac, finv):
+    MOD = 10 ** 9 + 7
+    if k < 0 or n < k:
+        return 0
+    k = min(k, n - k)
+    return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD
+
+n = 10 ** 6
+com = [[0] * n for _ in range(n)]
+com[0][0] = 1
+for i in range(1, n):
+    com[i][0] = 1
+    for j in range(1, i + 1):
+        com[i][j] = com[i - 1][j - 1] + com[i - 1][j]
