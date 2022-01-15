@@ -1,4 +1,5 @@
 # https://atcoder.jp/contests/abc178/editorial/2430
+# 復習
 s = int(input())
 # 数列の個数をkとすると、
 # k = 1, 2, 3, ..., s // 3となる

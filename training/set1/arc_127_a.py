@@ -1,4 +1,5 @@
 # https://miaoued.net/archives/2224
+# 復習
 
 n = int(input())
 

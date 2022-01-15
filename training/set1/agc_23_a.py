@@ -1,6 +1,6 @@
 # https://www.youtube.com/watch?v=8BHBFMrZ8VM
 # 解説AC
-
+# 復習
 from collections import defaultdict
 n = int(input())
 A = list(map(int, input().split()))
